@@ -1,0 +1,24 @@
+name: Deploy
+
+on:
+  push:
+  repository_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v2
+      - name: Publish
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          preCommands: |
+            apt update && apt install -y jq
+            cp wrangler.toml.example wrangler.toml
+            wrangler kv:namespace create Token || true
+            kv_namespace_id=$(wrangler kv:namespace list | jq -c 'map(select(.title | contains("Token")))' | jq ".[0].id")
+            sed -i "s/\"YOUR_KV_ID\"/${kv_namespace_id}/g" wrangler.toml
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

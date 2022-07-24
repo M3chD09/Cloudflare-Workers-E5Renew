@@ -1,0 +1,21 @@
+name = "e5renew"
+main = "src/index.js"
+compatibility_date = "2022-07-23"
+
+[triggers]
+crons = ["*/30 * * * *"]
+
+[vars]
+# The necessary secrets are:
+# - CRON_PATH
+# - TGBOT_TOKEN
+# - TGBOT_CHAT_ID
+# - MS_CLIENT_ID
+# - MS_CLIENT_SECRET
+# - MS_REDIRECT_URI
+# Run `wrangler secret put <NAME> <VALUE>` for each of these
+
+[[kv_namespaces]]
+    binding = "Token"
+    id = "YOUR_KV_ID"
+    preview_id = ""
