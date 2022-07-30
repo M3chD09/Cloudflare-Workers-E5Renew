@@ -4,6 +4,8 @@ const MS_GRAPH_VER = "1.0";
 const MS_GRAPH_API_LIST = [
   `${MS_GRAPH_ROOT}/v${MS_GRAPH_VER}/me`,
   `${MS_GRAPH_ROOT}/v${MS_GRAPH_VER}/me/drive`,
+  `${MS_GRAPH_ROOT}/v${MS_GRAPH_VER}/me/drive/recent`,
+  `${MS_GRAPH_ROOT}/v${MS_GRAPH_VER}/me/drive/sharedWithMe`,
   `${MS_GRAPH_ROOT}/v${MS_GRAPH_VER}/me/drive/root`,
   `${MS_GRAPH_ROOT}/v${MS_GRAPH_VER}/me/drive/root/children`,
   `${MS_GRAPH_ROOT}/v${MS_GRAPH_VER}/me/mailFolders`,
@@ -223,6 +225,9 @@ async function fetchMSApi(url) {
 }
 
 function randomInt(min, max) {
+  if (min > max) {
+    return randomInt(max, min);
+  }
   return Math.floor(Math.random() * (max - min) + min);
 }
 
