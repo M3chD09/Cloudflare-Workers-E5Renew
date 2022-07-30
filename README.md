@@ -2,6 +2,8 @@
 
 [![Deploy](https://github.com/M3chD09/Cloudflare-Workers-E5Renew/actions/workflows/deploy.yml/badge.svg)](https://github.com/M3chD09/Cloudflare-Workers-E5Renew/actions/workflows/deploy.yml)
 
+[中文文档](README_zh.md)
+
 ## Description
 Use [Cloudflare Workers](https://workers.cloudflare.com/) to renew your [E5](https://developer.microsoft.com/microsoft-365/dev-program) subscription by calling the Microsoft Graph API randomly. Not guaranteed the renewal will be successful.
 
